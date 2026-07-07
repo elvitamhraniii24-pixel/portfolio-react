@@ -8,7 +8,7 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
 // 🧩 Ganti import glb menjadi path dari public/
-const cardGLB = '/models/card.glb';
+const url = import.meta.env.BASE_URL + "models/card.glb";
 // 🧩 Tetap bisa pakai png dari src
 import lanyard from '../../assets/Lanyard/lanyard.png';
 
@@ -42,7 +42,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
   const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3();
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
 
-  const { nodes, materials } = useGLTF(cardGLB);
+  const { nodes, materials } = useGLTF(url);
   const texture = useTexture(lanyard);
   const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
   const [dragged, drag] = useState(false);
